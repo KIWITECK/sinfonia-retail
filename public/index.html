@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinfonía Retail - Panel del prototipo</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; margin: 24px; color: #111; background: #fff; }
+  h1 { font-size: 22px; margin: 0 0 16px; }
+  h2 { font-size: 15px; margin: 0 0 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  section { border: 1px solid #111; padding: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid #ccc; }
+  button { font: inherit; padding: 6px 10px; border: 1px solid #111; background: #fff; cursor: pointer; margin: 0 6px 6px 0; }
+  button:hover { background: #111; color: #fff; }
+  .up { font-weight: bold; } .down { font-weight: bold; text-decoration: underline; }
+  code { font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>Sinfonía Retail - Panel del prototipo</h1>
+<div class="grid">
+  <section><h2>Salud de servicios (Health Endpoint Monitoring)</h2><table id="health"></table><p>Circuit Breaker de pagos: <b id="breaker">-</b></p></section>
+  <section><h2>Catálogo (Cache-Aside)</h2><table id="catalog"></table><p>Caché: <span id="cache">-</span></p></section>
+  <section>
+    <h2>Pedidos (Saga + cola)</h2>
+    <button id="one">Crear pedido</button>
+    <button id="burst">Ráfaga de 10 pedidos</button>
+    <p>Pagos con fallos: <button id="chaos-on">Inyectar 100% de fallos</button><button id="chaos-off">Restablecer</button></p>
+    <p>Cola: <span id="queue">-</span></p>
+    <table id="orders"></table>
+  </section>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+const api = (p, o) => fetch('/api' + p, o).then((r) => r.json());
+const post = (p, body) => api(p, { method: 'POST', body: JSON.stringify(body) });
+const ITEMS = ['violin', 'guitarra', 'teclado', 'bateria'];
+const row = (cells, tag = 'td') => '<tr>' + cells.map((c) => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
+
+async function refresh() {
+  const [health, products, metrics, orders] = await Promise.all([api('/health'), api('/products'), api('/metrics'), api('/orders')]);
+  $('health').innerHTML = row(['Servicio', 'Estado'], 'th') + [{ name: 'gateway', status: 'UP' }, ...health.services]
+    .map((s) => row([s.name, `<span class="${s.status === 'UP' ? 'up' : 'down'}">${s.status}</span>`])).join('');
+  $('catalog').innerHTML = row(['Producto', 'Precio (COP)', 'Stock'], 'th') + products.map((p) => row([p.name, p.price.toLocaleString('es-CO'), p.stock])).join('');
+  const c = metrics.catalog?.cache;
+  $('cache').textContent = c ? `${c.hits} aciertos / ${c.misses} fallos` : '-';
+  $('breaker').textContent = metrics.orders?.breaker.state ?? '-';
+  const q = metrics.orders?.queue;
+  $('queue').textContent = q ? `${q.depth} en espera, ${q.active} activos, ${q.processed} procesados` : '-';
+  $('orders').innerHTML = row(['Pedido', 'Estado', 'Detalle'], 'th') + orders.slice(0, 8)
+    .map((o) => row([o.id.slice(0, 8), o.status, o.reason ?? (o.total ? o.total.toLocaleString('es-CO') : '')])).join('');
+}
+const newOrder = () => post('/orders', { customer: 'Cliente demo', items: [{ productId: ITEMS[Math.floor(Math.random() * 4)], qty: 1 }] });
+$('one').onclick = newOrder;
+$('burst').onclick = () => { for (let i = 0; i < 10; i++) newOrder(); };
+$('chaos-on').onclick = () => post('/admin/chaos', { failureRate: 1 });
+$('chaos-off').onclick = () => post('/admin/chaos', { failureRate: 0 });
+refresh(); setInterval(refresh, 1000);
+</script>
+</body>
+</html>
