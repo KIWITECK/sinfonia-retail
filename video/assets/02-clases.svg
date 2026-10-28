@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 540" width="760" height="540" font-family="Arial, Helvetica, sans-serif" fill="#000">
+<rect x="8" y="190" width="160" height="99" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="88" y="209" text-anchor="middle" font-size="13" font-weight="bold">ApiGateway</text>
+<line x1="8" y1="218" x2="168" y2="218" stroke="#000" stroke-width="1.3"/>
+<line x1="8" y1="245" x2="168" y2="245" stroke="#000" stroke-width="1.3"/>
+<text x="14" y="232" text-anchor="start" font-size="12">-limiter: RateLimiter</text>
+<text x="14" y="259" text-anchor="start" font-size="12">+route(request)</text>
+<text x="14" y="276" text-anchor="start" font-size="12">+health()</text>
+<rect x="201" y="10" width="160" height="150" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="281" y="29" text-anchor="middle" font-size="13" font-weight="bold">CatalogService</text>
+<line x1="201" y1="38" x2="361" y2="38" stroke="#000" stroke-width="1.3"/>
+<line x1="201" y1="82" x2="361" y2="82" stroke="#000" stroke-width="1.3"/>
+<text x="207" y="52" text-anchor="start" font-size="12">-db: Map</text>
+<text x="207" y="69" text-anchor="start" font-size="12">-reservations: Map</text>
+<text x="207" y="96" text-anchor="start" font-size="12">+list()</text>
+<text x="207" y="113" text-anchor="start" font-size="12">+get(id)</text>
+<text x="207" y="130" text-anchor="start" font-size="12">+reserve(id, qty)</text>
+<text x="207" y="147" text-anchor="start" font-size="12">+release(id)</text>
+<rect x="394" y="10" width="160" height="116" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="474" y="29" text-anchor="middle" font-size="13" font-weight="bold">CacheAside</text>
+<line x1="394" y1="38" x2="554" y2="38" stroke="#000" stroke-width="1.3"/>
+<line x1="394" y1="82" x2="554" y2="82" stroke="#000" stroke-width="1.3"/>
+<text x="400" y="52" text-anchor="start" font-size="12">-ttlMs: int</text>
+<text x="400" y="69" text-anchor="start" font-size="12">-entries: Map</text>
+<text x="400" y="96" text-anchor="start" font-size="12">+get(key, loader)</text>
+<text x="400" y="113" text-anchor="start" font-size="12">+invalidate(key)</text>
+<rect x="587" y="10" width="160" height="133" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="667" y="29" text-anchor="middle" font-size="13" font-weight="bold">Product</text>
+<line x1="587" y1="38" x2="747" y2="38" stroke="#000" stroke-width="1.3"/>
+<line x1="587" y1="116" x2="747" y2="116" stroke="#000" stroke-width="1.3"/>
+<text x="593" y="52" text-anchor="start" font-size="12">+id: String</text>
+<text x="593" y="69" text-anchor="start" font-size="12">+name: String</text>
+<text x="593" y="86" text-anchor="start" font-size="12">+price: int</text>
+<text x="593" y="103" text-anchor="start" font-size="12">+stock: int</text>
+<text x="593" y="130" text-anchor="start" font-size="12">+hasStock(qty)</text>
+<rect x="201" y="190" width="160" height="150" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="281" y="209" text-anchor="middle" font-size="13" font-weight="bold">OrderService</text>
+<line x1="201" y1="218" x2="361" y2="218" stroke="#000" stroke-width="1.3"/>
+<line x1="201" y1="262" x2="361" y2="262" stroke="#000" stroke-width="1.3"/>
+<text x="207" y="232" text-anchor="start" font-size="12">-orders: Map</text>
+<text x="207" y="249" text-anchor="start" font-size="12">-paymentsBreaker</text>
+<text x="207" y="276" text-anchor="start" font-size="12">+createOrder(dto)</text>
+<text x="207" y="293" text-anchor="start" font-size="12">+getOrder(id)</text>
+<text x="207" y="310" text-anchor="start" font-size="12">-runSaga(order)</text>
+<text x="207" y="327" text-anchor="start" font-size="12">-compensate(order)</text>
+<rect x="394" y="190" width="160" height="116" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="474" y="209" text-anchor="middle" font-size="13" font-weight="bold">WorkQueue</text>
+<line x1="394" y1="218" x2="554" y2="218" stroke="#000" stroke-width="1.3"/>
+<line x1="394" y1="262" x2="554" y2="262" stroke="#000" stroke-width="1.3"/>
+<text x="400" y="232" text-anchor="start" font-size="12">-pending: Order[]</text>
+<text x="400" y="249" text-anchor="start" font-size="12">-workers: int</text>
+<text x="400" y="276" text-anchor="start" font-size="12">+enqueue(job)</text>
+<text x="400" y="293" text-anchor="start" font-size="12">+stats()</text>
+<rect x="587" y="190" width="160" height="133" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="667" y="209" text-anchor="middle" font-size="13" font-weight="bold">CircuitBreaker</text>
+<line x1="587" y1="218" x2="747" y2="218" stroke="#000" stroke-width="1.3"/>
+<line x1="587" y1="279" x2="747" y2="279" stroke="#000" stroke-width="1.3"/>
+<text x="593" y="232" text-anchor="start" font-size="12">-state: Estado</text>
+<text x="593" y="249" text-anchor="start" font-size="12">-failures: int</text>
+<text x="593" y="266" text-anchor="start" font-size="12">-threshold: int</text>
+<text x="593" y="293" text-anchor="start" font-size="12">+exec(fn)</text>
+<text x="593" y="310" text-anchor="start" font-size="12">+snapshot()</text>
+<rect x="201" y="390" width="160" height="116" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="281" y="409" text-anchor="middle" font-size="13" font-weight="bold">Order</text>
+<line x1="201" y1="418" x2="361" y2="418" stroke="#000" stroke-width="1.3"/>
+<line x1="201" y1="479" x2="361" y2="479" stroke="#000" stroke-width="1.3"/>
+<text x="207" y="432" text-anchor="start" font-size="12">+id: UUID</text>
+<text x="207" y="449" text-anchor="start" font-size="12">+status: Estado</text>
+<text x="207" y="466" text-anchor="start" font-size="12">+total: int</text>
+<text x="207" y="493" text-anchor="start" font-size="12">+setStatus(estado)</text>
+<rect x="394" y="390" width="160" height="99" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="474" y="409" text-anchor="middle" font-size="13" font-weight="bold">OrderItem</text>
+<line x1="394" y1="418" x2="554" y2="418" stroke="#000" stroke-width="1.3"/>
+<line x1="394" y1="462" x2="554" y2="462" stroke="#000" stroke-width="1.3"/>
+<text x="400" y="432" text-anchor="start" font-size="12">+productId: String</text>
+<text x="400" y="449" text-anchor="start" font-size="12">+qty: int</text>
+<rect x="8" y="390" width="160" height="116" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="88" y="409" text-anchor="middle" font-size="13" font-weight="bold">PaymentService</text>
+<line x1="8" y1="418" x2="168" y2="418" stroke="#000" stroke-width="1.3"/>
+<line x1="8" y1="462" x2="168" y2="462" stroke="#000" stroke-width="1.3"/>
+<text x="14" y="432" text-anchor="start" font-size="12">-failureRate: float</text>
+<text x="14" y="449" text-anchor="start" font-size="12">-processed: Map</text>
+<text x="14" y="476" text-anchor="start" font-size="12">+charge(monto, key)</text>
+<text x="14" y="493" text-anchor="start" font-size="12">+setChaos(rate)</text>
+<line x1="88" y1="190" x2="88" y2="60" stroke="#000" stroke-width="1.3"/>
+<line x1="88" y1="60" x2="201" y2="60" stroke="#000" stroke-width="1.3"/>
+<polyline points="190,55 201,60 190,65" fill="none" stroke="#000" stroke-width="1.3"/>
+<line x1="168" y1="235" x2="201" y2="235" stroke="#000" stroke-width="1.3"/>
+<polyline points="190,230 201,235 190,240" fill="none" stroke="#000" stroke-width="1.3"/>
+<line x1="88" y1="289" x2="88" y2="390" stroke="#000" stroke-width="1.3"/>
+<polyline points="93,379 88,390 83,379" fill="none" stroke="#000" stroke-width="1.3"/>
+<line x1="361" y1="60" x2="394" y2="60" stroke="#000" stroke-width="1.3"/>
+<polygon points="361,60 370,65 379,60 370,55" fill="#000" stroke="#000"/>
+<text x="382" y="52" text-anchor="start" font-size="11">1</text>
+<line x1="361" y1="132" x2="587" y2="132" stroke="#000" stroke-width="1.3"/>
+<polygon points="361,132 370,137 379,132 370,127" fill="#000" stroke="#000"/>
+<text x="557" y="124" text-anchor="start" font-size="11">0..*</text>
+<line x1="361" y1="235" x2="394" y2="235" stroke="#000" stroke-width="1.3"/>
+<polygon points="361,235 370,240 379,235 370,230" fill="#000" stroke="#000"/>
+<text x="382" y="227" text-anchor="start" font-size="11">1</text>
+<line x1="361" y1="315" x2="587" y2="315" stroke="#000" stroke-width="1.3"/>
+<polygon points="361,315 370,320 379,315 370,310" fill="#000" stroke="#000"/>
+<text x="575" y="307" text-anchor="start" font-size="11">1</text>
+<line x1="281" y1="340" x2="281" y2="390" stroke="#000" stroke-width="1.3"/>
+<polygon points="281,340 276,349 281,358 286,349" fill="#000" stroke="#000"/>
+<text x="289" y="382" text-anchor="start" font-size="11">0..*</text>
+<line x1="361" y1="440" x2="394" y2="440" stroke="#000" stroke-width="1.3"/>
+<polygon points="361,440 370,445 379,440 370,435" fill="#000" stroke="#000"/>
+<text x="364" y="432" text-anchor="start" font-size="11">1..*</text>
+<text x="380" y="525" text-anchor="middle" font-size="12" font-style="italic">Rombo relleno: composición. Flecha abierta: dependencia de uso.</text>
+</svg>

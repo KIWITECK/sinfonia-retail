@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 490" width="760" height="490" font-family="Arial, Helvetica, sans-serif" fill="#000">
+<rect x="165" y="18" width="590" height="455" rx="6" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="178" y="40" text-anchor="start" font-size="13" font-weight="bold">«cloud»  Plataforma de contenedores gestionada (p. ej., Cloud Run)</text>
+<polygon points="10,205 19,196 139,196 130,205" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<polygon points="130,205 139,196 139,286 130,295" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<rect x="10" y="205" width="120" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="70" y="225" text-anchor="middle" font-size="12">«device»</text>
+<text x="70" y="243" text-anchor="middle" font-size="13" font-weight="bold">Navegador</text>
+<text x="70" y="263" text-anchor="middle" font-size="12">Panel HTML/JS</text>
+<polygon points="190,205 199,196 339,196 330,205" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<polygon points="330,205 339,196 339,286 330,295" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<rect x="190" y="205" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="260" y="225" text-anchor="middle" font-size="12">«container»</text>
+<text x="260" y="243" text-anchor="middle" font-size="13" font-weight="bold">gateway</text>
+<text x="260" y="263" text-anchor="middle" font-size="12">Node.js 22 · :8080</text>
+<text x="260" y="279" text-anchor="middle" font-size="12">API Gateway</text>
+<polygon points="400,70 409,61 549,61 540,70" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<polygon points="540,70 549,61 549,151 540,160" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<rect x="400" y="70" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="470" y="90" text-anchor="middle" font-size="12">«container»</text>
+<text x="470" y="108" text-anchor="middle" font-size="13" font-weight="bold">catalog</text>
+<text x="470" y="128" text-anchor="middle" font-size="12">Node.js 22 · :4001</text>
+<text x="470" y="144" text-anchor="middle" font-size="12">Cache-Aside</text>
+<polygon points="400,205 409,196 549,196 540,205" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<polygon points="540,205 549,196 549,286 540,295" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<rect x="400" y="205" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="470" y="225" text-anchor="middle" font-size="12">«container»</text>
+<text x="470" y="243" text-anchor="middle" font-size="13" font-weight="bold">orders</text>
+<text x="470" y="263" text-anchor="middle" font-size="12">Node.js 22 · :4002</text>
+<text x="470" y="279" text-anchor="middle" font-size="12">Cola, Saga, Breaker</text>
+<polygon points="400,340 409,331 549,331 540,340" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<polygon points="540,340 549,331 549,421 540,430" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<rect x="400" y="340" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="470" y="360" text-anchor="middle" font-size="12">«container»</text>
+<text x="470" y="378" text-anchor="middle" font-size="13" font-weight="bold">payments</text>
+<text x="470" y="398" text-anchor="middle" font-size="12">Node.js 22 · :4003</text>
+<text x="470" y="414" text-anchor="middle" font-size="12">Idempotencia</text>
+<polygon points="600,70 609,61 749,61 740,70" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polygon points="740,70 749,61 749,151 740,160" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="600" y="70" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="670" y="90" text-anchor="middle" font-size="12">«evolución»</text>
+<text x="670" y="108" text-anchor="middle" font-size="13" font-weight="bold">Caché gestionada</text>
+<text x="670" y="128" text-anchor="middle" font-size="12">p. ej., Redis</text>
+<polygon points="600,205 609,196 749,196 740,205" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polygon points="740,205 749,196 749,286 740,295" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="600" y="205" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="670" y="225" text-anchor="middle" font-size="12">«evolución»</text>
+<text x="670" y="243" text-anchor="middle" font-size="13" font-weight="bold">Broker de mensajes</text>
+<text x="670" y="263" text-anchor="middle" font-size="12">p. ej., Pub/Sub</text>
+<polygon points="600,340 609,331 749,331 740,340" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polygon points="740,340 749,331 749,421 740,430" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="600" y="340" width="140" height="90" rx="0" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="670" y="360" text-anchor="middle" font-size="12">«evolución»</text>
+<text x="670" y="378" text-anchor="middle" font-size="13" font-weight="bold">Pasarela de pagos</text>
+<text x="670" y="398" text-anchor="middle" font-size="12">proveedor externo</text>
+<line x1="130" y1="250" x2="190" y2="250" stroke="#000" stroke-width="1.3"/>
+<polyline points="179,245 190,250 179,255" fill="none" stroke="#000" stroke-width="1.3"/>
+<polyline points="141,255 130,250 141,245" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="139" y="230" width="42" height="16" fill="#fff" stroke="none"/>
+<text x="160" y="242" text-anchor="middle" font-size="11" font-style="italic">HTTPS</text>
+<line x1="330" y1="240" x2="400" y2="115" stroke="#000" stroke-width="1.3"/>
+<polyline points="390.2628328620011,122.1545493307877 400,115 398.9878930214983,127.04058302010613" fill="none" stroke="#000" stroke-width="1.3"/>
+<line x1="330" y1="250" x2="400" y2="250" stroke="#000" stroke-width="1.3"/>
+<polyline points="389,245 400,250 389,255" fill="none" stroke="#000" stroke-width="1.3"/>
+<line x1="330" y1="260" x2="400" y2="385" stroke="#000" stroke-width="1.3"/>
+<polyline points="398.9878930214983,372.9594169798939 400,385 390.2628328620011,377.8454506692123" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="347.2" y="188" width="35.6" height="16" fill="#fff" stroke="none"/>
+<text x="365" y="200" text-anchor="middle" font-size="11" font-style="italic">HTTP</text>
+<line x1="470" y1="205" x2="470" y2="160" stroke="#000" stroke-width="1.3"/>
+<polyline points="465,171 470,160 475,171" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="472.6" y="175" width="54.800000000000004" height="16" fill="#fff" stroke="none"/>
+<text x="500" y="187" text-anchor="middle" font-size="11" font-style="italic">reserve</text>
+<line x1="470" y1="295" x2="470" y2="340" stroke="#000" stroke-width="1.3"/>
+<polyline points="475,329 470,340 465,329" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="471.8" y="310" width="48.400000000000006" height="16" fill="#fff" stroke="none"/>
+<text x="496" y="322" text-anchor="middle" font-size="11" font-style="italic">charge</text>
+<line x1="540" y1="115" x2="600" y2="115" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<line x1="540" y1="250" x2="600" y2="250" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<line x1="540" y1="385" x2="600" y2="385" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="745" y="462" text-anchor="end" font-size="12" font-style="italic">Línea discontinua: evolución prevista, no implementada.</text>
+</svg>

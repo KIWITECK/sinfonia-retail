@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500" font-family="Arial, Helvetica, sans-serif" fill="#000">
+<rect x="120" y="15" width="520" height="475" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="380" y="38" text-anchor="middle" font-size="14" font-weight="bold">Sinfonía Retail</text>
+<ellipse cx="250" cy="90" rx="100" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="250" y="95" text-anchor="middle" font-size="13">Consultar catálogo</text>
+<ellipse cx="250" cy="200" rx="100" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="250" y="205" text-anchor="middle" font-size="13">Crear pedido</text>
+<ellipse cx="250" cy="305" rx="100" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="250" y="302" text-anchor="middle" font-size="13">Consultar estado</text>
+<text x="250" y="318" text-anchor="middle" font-size="13">del pedido</text>
+<ellipse cx="250" cy="385" rx="100" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="250" y="382" text-anchor="middle" font-size="13">Monitorear salud</text>
+<text x="250" y="398" text-anchor="middle" font-size="13">y métricas</text>
+<ellipse cx="250" cy="450" rx="100" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="250" y="447" text-anchor="middle" font-size="13">Inyectar fallos</text>
+<text x="250" y="463" text-anchor="middle" font-size="13">en pagos</text>
+<ellipse cx="545" cy="125" rx="85" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="545" y="130" text-anchor="middle" font-size="13">Reservar inventario</text>
+<ellipse cx="545" cy="220" rx="85" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="545" y="225" text-anchor="middle" font-size="13">Procesar pago</text>
+<ellipse cx="545" cy="315" rx="85" ry="28" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="545" y="312" text-anchor="middle" font-size="13">Compensar y</text>
+<text x="545" y="328" text-anchor="middle" font-size="13">cancelar pedido</text>
+<circle cx="55" cy="150" r="10" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="160" x2="55" y2="190" stroke="#000" stroke-width="1.3"/>
+<line x1="37" y1="172" x2="73" y2="172" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="190" x2="41" y2="212" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="190" x2="69" y2="212" stroke="#000" stroke-width="1.3"/>
+<text x="55" y="230" text-anchor="middle" font-size="13" font-weight="bold">Cliente</text>
+<circle cx="55" cy="370" r="10" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="380" x2="55" y2="410" stroke="#000" stroke-width="1.3"/>
+<line x1="37" y1="392" x2="73" y2="392" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="410" x2="41" y2="432" stroke="#000" stroke-width="1.3"/>
+<line x1="55" y1="410" x2="69" y2="432" stroke="#000" stroke-width="1.3"/>
+<text x="55" y="450" text-anchor="middle" font-size="13" font-weight="bold">Administrador</text>
+<circle cx="705" cy="180" r="10" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<line x1="705" y1="190" x2="705" y2="220" stroke="#000" stroke-width="1.3"/>
+<line x1="687" y1="202" x2="723" y2="202" stroke="#000" stroke-width="1.3"/>
+<line x1="705" y1="220" x2="691" y2="242" stroke="#000" stroke-width="1.3"/>
+<line x1="705" y1="220" x2="719" y2="242" stroke="#000" stroke-width="1.3"/>
+<text x="705" y="260" text-anchor="middle" font-size="13" font-weight="bold">Pasarela</text>
+<text x="705" y="274" text-anchor="middle" font-size="13" font-weight="bold">de pagos</text>
+<line x1="73" y1="172" x2="153" y2="90" stroke="#000" stroke-width="1.3"/>
+<line x1="73" y1="172" x2="153" y2="200" stroke="#000" stroke-width="1.3"/>
+<line x1="73" y1="172" x2="153" y2="305" stroke="#000" stroke-width="1.3"/>
+<line x1="73" y1="392" x2="153" y2="385" stroke="#000" stroke-width="1.3"/>
+<line x1="73" y1="392" x2="153" y2="450" stroke="#000" stroke-width="1.3"/>
+<line x1="687" y1="202" x2="630" y2="220" stroke="#000" stroke-width="1.3"/>
+<line x1="340" y1="186" x2="465" y2="135" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="452.9262571626124,134.52593893153818 465,135 456.7039313019177,143.78494417493357" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="371.2" y="148" width="67.6" height="16" fill="#fff" stroke="none"/>
+<text x="405" y="160" text-anchor="middle" font-size="12" font-style="italic">«include»</text>
+<line x1="348" y1="205" x2="460" y2="217" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="449.5952649250534,210.85658987042405 460,217 448.52993368871074,220.7996814096221" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="371.2" y="210" width="67.6" height="16" fill="#fff" stroke="none"/>
+<text x="405" y="222" text-anchor="middle" font-size="12" font-style="italic">«include»</text>
+<line x1="465" y1="299" x2="325" y2="225" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="332.3885077153219,234.56085528290376 325,225 337.06158097116656,225.71990587995444" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="374.4" y="273" width="61.2" height="16" fill="#fff" stroke="none"/>
+<text x="405" y="285" text-anchor="middle" font-size="12" font-style="italic">«extend»</text>
+</svg>

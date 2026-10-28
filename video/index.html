@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; color: #000; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; }
+  #root { position: relative; width: 1920px; height: 1080px; background: #fff; font-family: Arial, Helvetica, sans-serif; }
+  .slide { position: absolute; inset: 0; padding: 90px 120px 80px; background: #fff; }
+  h1 { font-size: 58px; font-weight: bold; line-height: 1.15; margin-bottom: 48px; }
+  h2 { font-size: 38px; font-weight: bold; margin-bottom: 18px; }
+  ul { list-style: none; }
+  li { font-size: 40px; line-height: 1.3; margin-bottom: 26px; padding-left: 36px; position: relative; }
+  li::before { content: "–"; position: absolute; left: 0; }
+  .footer { font-size: 32px; margin-top: 36px; border-top: 2px solid #000; padding-top: 22px; }
+  .num { position: absolute; right: 120px; bottom: 40px; font-size: 24px; }
+  .center { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .center h1 { font-size: 84px; margin-bottom: 56px; }
+  .sub { font-size: 44px; margin-bottom: 28px; font-weight: bold; }
+  .meta { font-size: 34px; margin-bottom: 14px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .col li { font-size: 33px; margin-bottom: 20px; }
+  .col h2 { border-bottom: 2px solid #000; padding-bottom: 12px; }
+  .boxes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .box { border: 2px solid #000; padding: 28px 34px; }
+  .box p { font-size: 34px; line-height: 1.3; }
+  table { width: 100%; border-collapse: collapse; font-size: 34px; }
+  table.dense { font-size: 29px; }
+  th { text-align: left; font-weight: bold; padding: 12px 16px; border-top: 2px solid #000; border-bottom: 2px solid #000; }
+  td { padding: 12px 16px; vertical-align: top; line-height: 1.25; }
+  tbody tr:last-child td { border-bottom: 2px solid #000; }
+  .imgwrap { display: flex; justify-content: center; align-items: center; }
+  .imgwrap img { height: 800px; width: auto; max-width: 100%; display: block; }
+  .split { display: grid; grid-template-columns: 760px 1fr; gap: 56px; align-items: start; }
+  .split .imgwrap img { height: auto; width: 760px; max-height: 830px; border: 1px solid #000; }
+  .split li { font-size: 33px; margin-bottom: 22px; }
+  .tree { font-family: Arial, Helvetica, sans-serif; font-size: 36px; line-height: 1.7; white-space: pre; }
+  .stats { display: grid; gap: 28px; }
+  .stat { border: 2px solid #000; padding: 22px 34px; }
+  .value { font-size: 66px; font-weight: bold; }
+  .label { font-size: 32px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="904.21" data-width="1920" data-height="1080">
+<section id="s01" class="slide clip" data-start="0" data-duration="38.99" data-track-index="0"><div class="center"><h1 class="it">Orquestando códigos: la sinfonía de los sistemas</h1><p class="sub it">Arquitectura de microservicios en la nube para Sinfonía Retail</p><p class="meta it">David Amaya</p><p class="meta it">Tecnológica del Oriente · Arquitectura de Software · Unidad 1, Actividad 2</p></div><span class="num">1 / 20</span></section>
+<audio id="a-s01" src="audio/s01.wav" data-start="0.3" data-duration="37.99" data-track-index="1"></audio>
+<section id="s02" class="slide clip" data-start="38.99" data-duration="42.54" data-track-index="0"><h1 class="it">Contenido</h1><ul><li class="it">1. El problema y los requisitos</li><li class="it">2. Diseño de la arquitectura con UML</li><li class="it">3. Patrones de diseño para la nube</li><li class="it">4. Prototipo: demostración, pruebas y mediciones</li><li class="it">5. Ejecución en la nube, conclusiones y limitaciones</li></ul><span class="num">2 / 20</span></section>
+<audio id="a-s02" src="audio/s02.wav" data-start="39.29" data-duration="41.54" data-track-index="1"></audio>
+<section id="s03" class="slide clip" data-start="81.53" data-duration="49.77" data-track-index="0"><h1 class="it">El problema: un monolito que no resiste las campañas</h1><ul><li class="it">Las visitas se multiplican en campañas y el sitio se degrada</li><li class="it">Si la pasarela de pagos se demora, todo el sitio deja de responder</li><li class="it">Pedidos simultáneos reservan la misma existencia: sobreventa</li><li class="it">Cada corrección obliga a desplegar la aplicación completa</li></ul><p class="footer it">Meta: una arquitectura modular, escalable por partes, tolerante a fallas de terceros y desplegable en la nube.</p><span class="num">3 / 20</span></section>
+<audio id="a-s03" src="audio/s03.wav" data-start="81.83" data-duration="48.77" data-track-index="1"></audio>
+<section id="s04" class="slide clip" data-start="131.3" data-duration="47.53" data-track-index="0"><h1 class="it">Requisitos funcionales</h1><div class="cols"><div class="col it"><h2>Cliente</h2><ul><li>RF-01 Consultar el catálogo</li><li>RF-02 Crear un pedido</li><li>RF-05 Consultar el estado del pedido</li></ul></div><div class="col it"><h2>Sistema</h2><ul><li>RF-03 Reservar inventario sin sobreventa</li><li>RF-04 Procesar el pago</li><li>RF-06 Cancelar y liberar inventario si el pago falla</li></ul></div><div class="col it"><h2>Administrador</h2><ul><li>RF-07 Ver salud y métricas</li><li>RF-08 Simular fallos de la pasarela de pagos</li></ul></div></div><span class="num">4 / 20</span></section>
+<audio id="a-s04" src="audio/s04.wav" data-start="131.60000000000002" data-duration="46.53" data-track-index="1"></audio>
+<section id="s05" class="slide clip" data-start="178.83" data-duration="55.3" data-track-index="0"><h1 class="it">Requisitos no funcionales como escenarios medibles</h1><table class="it"><thead><tr><th>Atributo</th><th>Escenario</th><th>Mecanismo</th></tr></thead><tbody><tr><td>Desempeño</td><td>Lectura repetida del catálogo en menos de 10 ms</td><td>Cache-Aside</td></tr><tr><td>Escalabilidad</td><td>Ráfaga de 40 pedidos: mediana de aceptación menor a 100 ms</td><td>Cola de trabajo</td></tr><tr><td>Tolerancia a fallos</td><td>Rechazo en menos de 50 ms con el circuito abierto; recuperación 5 s después</td><td>Circuit Breaker y Retry</td></tr><tr><td>Consistencia</td><td>Ningún pedido cancelado deja inventario reservado</td><td>Saga e idempotencia</td></tr><tr><td>Mantenibilidad</td><td>Cada servicio se modifica y despliega por separado</td><td>Servicios y API Gateway</td></tr><tr><td>Portabilidad</td><td>Se ejecuta en cualquier plataforma de contenedores</td><td>Imagen única</td></tr><tr><td>Operabilidad</td><td>Salud y métricas en menos de 1 s</td><td>Health Endpoint Monitoring</td></tr><tr><td>Seguridad</td><td>Un cliente no puede saturar el sistema</td><td>Límite de tasa</td></tr></tbody></table><span class="num">5 / 20</span></section>
+<audio id="a-s05" src="audio/s05.wav" data-start="179.13000000000002" data-duration="54.30" data-track-index="1"></audio>
+<section id="s06" class="slide clip" data-start="234.13" data-duration="47.22" data-track-index="0"><h1 class="it">Estilo arquitectónico: microservicios</h1><div class="boxes"><div class="box it"><h2>API Gateway</h2><p>Punto único de entrada, límite de tasa y salud agregada</p></div><div class="box it"><h2>Catálogo</h2><p>Productos, inventario y reservas idempotentes; Cache-Aside</p></div><div class="box it"><h2>Pedidos</h2><p>Cola de trabajo, saga orquestada, Retry y Circuit Breaker</p></div><div class="box it"><h2>Pagos</h2><p>Cobro idempotente e inyección de fallos</p></div></div><p class="footer it">Cada servicio tiene su responsabilidad y su estado; ninguno comparte base de datos.</p><span class="num">6 / 20</span></section>
+<audio id="a-s06" src="audio/s06.wav" data-start="234.43" data-duration="46.22" data-track-index="1"></audio>
+<section id="s07" class="slide clip" data-start="281.35" data-duration="47.41" data-track-index="0"><h1 class="it">Diagrama de casos de uso</h1><div class="imgwrap it"><img src="assets/01-casos-de-uso.svg" alt=""></div><span class="num">7 / 20</span></section>
+<audio id="a-s07" src="audio/s07.wav" data-start="281.65000000000003" data-duration="46.41" data-track-index="1"></audio>
+<section id="s08" class="slide clip" data-start="328.76" data-duration="39.06" data-track-index="0"><h1 class="it">Diagrama de clases</h1><div class="imgwrap it"><img src="assets/02-clases.svg" alt=""></div><span class="num">8 / 20</span></section>
+<audio id="a-s08" src="audio/s08.wav" data-start="329.06" data-duration="38.06" data-track-index="1"></audio>
+<section id="s09" class="slide clip" data-start="367.82" data-duration="53.45" data-track-index="0"><h1 class="it">Diagrama de secuencia: creación de un pedido</h1><div class="imgwrap it"><img src="assets/03-secuencia.svg" alt=""></div><span class="num">9 / 20</span></section>
+<audio id="a-s09" src="audio/s09.wav" data-start="368.12" data-duration="52.45" data-track-index="1"></audio>
+<section id="s10" class="slide clip" data-start="421.27" data-duration="46.48" data-track-index="0"><h1 class="it">Diagrama de despliegue</h1><div class="imgwrap it"><img src="assets/04-despliegue.svg" alt=""></div><span class="num">10 / 20</span></section>
+<audio id="a-s10" src="audio/s10.wav" data-start="421.57" data-duration="45.48" data-track-index="1"></audio>
+<section id="s11" class="slide clip" data-start="467.75" data-duration="55.09" data-track-index="0"><h1 class="it">Patrones de diseño seleccionados</h1><table class="it dense"><thead><tr><th>Patrón</th><th>Problema que resuelve</th><th>Requisito</th></tr></thead><tbody><tr><td>API Gateway</td><td>Los clientes no deben conocer los servicios</td><td>Mantenibilidad, operabilidad</td></tr><tr><td>Cache-Aside</td><td>Lecturas repetidas sobrecargan la fuente de datos</td><td>Desempeño</td></tr><tr><td>Queue-Based Load Leveling</td><td>Las ráfagas saturan el procesamiento síncrono</td><td>Escalabilidad</td></tr><tr><td>Saga orquestada</td><td>No hay transacción distribuida entre catálogo y pagos</td><td>Consistencia</td></tr><tr><td>Circuit Breaker</td><td>Una dependencia caída propaga el fallo</td><td>Tolerancia a fallos</td></tr><tr><td>Retry</td><td>Los fallos transitorios no deben cancelar pedidos</td><td>Tolerancia a fallos</td></tr><tr><td>Idempotent Receiver</td><td>Un reintento no debe cobrar ni reservar dos veces</td><td>Consistencia</td></tr><tr><td>Health Endpoint Monitoring</td><td>El operador debe saber qué componente falló</td><td>Operabilidad</td></tr><tr><td>Rate Limiting</td><td>Un cliente puede saturar el sistema</td><td>Seguridad</td></tr></tbody></table><span class="num">11 / 20</span></section>
+<audio id="a-s11" src="audio/s11.wav" data-start="468.05" data-duration="54.09" data-track-index="1"></audio>
+<section id="s12" class="slide clip" data-start="522.84" data-duration="55.94" data-track-index="0"><h1 class="it">Justificación de las decisiones</h1><div class="cols"><div class="col it"><h2>Saga orquestada</h2><ul><li>El pedido cruza solo dos servicios</li><li>Un orquestador concentra la lógica</li><li>Evita dependencias cíclicas</li></ul></div><div class="col it"><h2>Retry + Circuit Breaker</h2><ul><li>Retry absorbe fallos transitorios</li><li>El interruptor corta los persistentes</li><li>El reintento envuelve al interruptor</li></ul></div><div class="col it"><h2>Alternativas descartadas</h2><ul><li>Monolito modular: no aísla fallos</li><li>Commit en dos fases: las pasarelas no lo ofrecen</li><li>Base de datos compartida: acoplamiento</li></ul></div></div><span class="num">12 / 20</span></section>
+<audio id="a-s12" src="audio/s12.wav" data-start="523.14" data-duration="54.94" data-track-index="1"></audio>
+<section id="s13" class="slide clip" data-start="578.78" data-duration="47.25" data-track-index="0"><h1 class="it">Prototipo: estructura del repositorio</h1><pre class="tree it">sinfonia-retail/
+    src/services/   catalog · payments · orders · gateway
+    src/shared/     circuit-breaker · retry · cache · queue · http
+    public/         panel web de demostración
+    test/           12 pruebas (unitarias e integración)
+    scripts/        bench.mjs (mediciones)
+    docs/           informe APA 7 y diagramas UML
+    Dockerfile · docker-compose.yml · README.md</pre><p class="footer it">Node.js 22, módulos ES, sin dependencias externas.</p><span class="num">13 / 20</span></section>
+<audio id="a-s13" src="audio/s13.wav" data-start="579.0799999999999" data-duration="46.25" data-track-index="1"></audio>
+<section id="s14" class="slide clip" data-start="626.03" data-duration="46.99" data-track-index="0"><h1 class="it">Demostración 1: caché y cola de trabajo</h1><div class="stats"><div class="stat it"><div class="value">118,6 ms → 0,7 ms</div><div class="label">Lectura del catálogo sin caché y con caché (mediana, n = 30)</div></div><div class="stat it"><div class="value">42 ms</div><div class="label">Tiempo en aceptar una ráfaga de 40 pedidos (mediana por solicitud: 26,8 ms)</div></div><div class="stat it"><div class="value">1,74 s</div><div class="label">Procesamiento completo de los 40 pedidos con dos trabajadores</div></div></div><p class="footer it">Medido con node scripts/bench.mjs</p><span class="num">14 / 20</span></section>
+<audio id="a-s14" src="audio/s14.wav" data-start="626.3299999999999" data-duration="45.99" data-track-index="1"></audio>
+<section id="s15" class="slide clip" data-start="673.02" data-duration="51.61" data-track-index="0"><h1 class="it">Demostración 2: caída del servicio de pagos</h1><div class="split"><div class="imgwrap it"><img src="assets/panel-circuito-abierto.png" alt=""></div><ul><li class="it">Se inyecta 100 % de fallos en pagos</li><li class="it">Primer pedido: cancelado en 481 ms (agota reintentos)</li><li class="it">Pedidos siguientes: cancelados en cerca de 20 ms, con el circuito abierto</li><li class="it">Inventario del violín: 25 unidades, la compensación liberó cada reserva</li><li class="it">Tras 5 s: circuito semiabierto, prueba exitosa, circuito cerrado</li></ul></div><span class="num">15 / 20</span></section>
+<audio id="a-s15" src="audio/s15.wav" data-start="673.3199999999999" data-duration="50.61" data-track-index="1"></audio>
+<section id="s16" class="slide clip" data-start="724.63" data-duration="42.19" data-track-index="0"><h1 class="it">Pruebas y mediciones frente a los umbrales</h1><table class="it"><thead><tr><th>Escenario</th><th>Umbral</th><th>Resultado</th><th>Cumple</th></tr></thead><tbody><tr><td>Lectura del catálogo</td><td>Menos de 10 ms con caché</td><td>118,6 ms sin caché; 0,7 ms con caché</td><td>Sí</td></tr><tr><td>Ráfaga de 40 pedidos</td><td>Mediana menor a 100 ms</td><td>26,8 ms; 40 aceptados en 42 ms</td><td>Sí</td></tr><tr><td>Caída de pagos</td><td>Menos de 50 ms con circuito abierto</td><td>481 ms el primero; luego cerca de 20 ms</td><td>Sí</td></tr><tr><td>Recuperación</td><td>A los 5 s de restablecer el servicio</td><td>Pedido CONFIRMED a los 5,2 s</td><td>Sí</td></tr><tr><td>Consistencia</td><td>Sin reservas huérfanas</td><td>Violín: 24 de 25 (un pedido confirmado)</td><td>Sí</td></tr></tbody></table><p class="footer it">12 pruebas automatizadas (5 unitarias y 7 de integración): todas pasan con npm test. Una ejecución local representativa.</p><span class="num">16 / 20</span></section>
+<audio id="a-s16" src="audio/s16.wav" data-start="724.93" data-duration="41.19" data-track-index="1"></audio>
+<section id="s17" class="slide clip" data-start="766.82" data-duration="47.25" data-track-index="0"><h1 class="it">Ejecución en la nube y repositorio</h1><ul><li class="it">Imagen de contenedor única, configurada con variables de entorno</li><li class="it">SERVICE=all: un contenedor que escucha en el puerto de la plataforma (p. ej., Cloud Run)</li><li class="it">docker compose up: los cuatro servicios por separado</li><li class="it">Verificado en ejecución local; despliegue documentado en el README</li><li class="it">Repositorio: código, pruebas, diagramas, informe y guion de mediciones</li></ul><span class="num">17 / 20</span></section>
+<audio id="a-s17" src="audio/s17.wav" data-start="767.12" data-duration="46.25" data-track-index="1"></audio>
+<section id="s18" class="slide clip" data-start="814.07" data-duration="34.68" data-track-index="0"><h1 class="it">Conclusiones</h1><ul><li class="it">Servicios y API Gateway: modularidad</li><li class="it">Cola y Cache-Aside: escalabilidad y rendimiento</li><li class="it">Retry, Circuit Breaker y saga con compensación: tolerancia a fallas sin perder consistencia</li><li class="it">Los cinco escenarios medidos cumplieron sus umbrales</li><li class="it">UML permitió trazar cada requisito hasta un componente</li></ul><span class="num">18 / 20</span></section>
+<audio id="a-s18" src="audio/s18.wav" data-start="814.37" data-duration="33.68" data-track-index="1"></audio>
+<section id="s19" class="slide clip" data-start="848.75" data-duration="41.22" data-track-index="0"><h1 class="it">Limitaciones y trabajo futuro</h1><div class="cols"><div class="col it"><h2>Limitaciones</h2><ul><li>Datos en memoria</li><li>Cola local al proceso: un reinicio pierde pedidos pendientes</li><li>Pasarela de pagos simulada</li><li>Sin autenticación</li></ul></div><div class="col it"><h2>En producción</h2><ul><li>Broker de mensajes en lugar de la cola local</li><li>Base de datos gestionada por servicio</li><li>Caché compartida</li><li>Autenticación en el Gateway y trazabilidad distribuida</li></ul></div><div class="col it"><h2>Trabajo futuro</h2><ul><li>Medir bajo carga sostenida en la nube</li><li>Validar las mismas métricas fuera del entorno local</li></ul></div></div><span class="num">19 / 20</span></section>
+<audio id="a-s19" src="audio/s19.wav" data-start="849.05" data-duration="40.22" data-track-index="1"></audio>
+<section id="s20" class="slide clip" data-start="889.97" data-duration="14.24" data-track-index="0"><div class="center"><h1 class="it">Gracias</h1><p class="sub it">David Amaya</p><p class="meta it">Informe técnico, código fuente e instrucciones de ejecución en el repositorio</p></div><span class="num">20 / 20</span></section>
+<audio id="a-s20" src="audio/s20.wav" data-start="890.27" data-duration="13.24" data-track-index="1"></audio>
+</div>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#s01", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 0);
+  tl.fromTo("#s01 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 0.30);
+  tl.fromTo("#s02", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 38.99);
+  tl.fromTo("#s02 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 39.29);
+  tl.fromTo("#s03", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 81.53);
+  tl.fromTo("#s03 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 81.83);
+  tl.fromTo("#s04", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 131.3);
+  tl.fromTo("#s04 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 131.60);
+  tl.fromTo("#s05", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 178.83);
+  tl.fromTo("#s05 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 179.13);
+  tl.fromTo("#s06", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 234.13);
+  tl.fromTo("#s06 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 234.43);
+  tl.fromTo("#s07", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 281.35);
+  tl.fromTo("#s07 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 281.65);
+  tl.fromTo("#s08", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 328.76);
+  tl.fromTo("#s08 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 329.06);
+  tl.fromTo("#s09", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 367.82);
+  tl.fromTo("#s09 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 368.12);
+  tl.fromTo("#s10", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 421.27);
+  tl.fromTo("#s10 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 421.57);
+  tl.fromTo("#s11", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 467.75);
+  tl.fromTo("#s11 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 468.05);
+  tl.fromTo("#s12", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 522.84);
+  tl.fromTo("#s12 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 523.14);
+  tl.fromTo("#s13", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 578.78);
+  tl.fromTo("#s13 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 579.08);
+  tl.fromTo("#s14", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 626.03);
+  tl.fromTo("#s14 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 626.33);
+  tl.fromTo("#s15", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 673.02);
+  tl.fromTo("#s15 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 673.32);
+  tl.fromTo("#s16", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 724.63);
+  tl.fromTo("#s16 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 724.93);
+  tl.fromTo("#s17", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 766.82);
+  tl.fromTo("#s17 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 767.12);
+  tl.fromTo("#s18", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 814.07);
+  tl.fromTo("#s18 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 814.37);
+  tl.fromTo("#s19", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 848.75);
+  tl.fromTo("#s19 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 849.05);
+  tl.fromTo("#s20", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 889.97);
+  tl.fromTo("#s20 .it", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.35 }, 890.27);
+  window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 726" width="760" height="726" font-family="Arial, Helvetica, sans-serif" fill="#000">
+<rect x="8" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="60" y="29" text-anchor="middle" font-size="13" font-weight="bold">Cliente</text>
+<line x1="60" y1="38" x2="60" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="128" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="180" y="29" text-anchor="middle" font-size="13" font-weight="bold">API Gateway</text>
+<line x1="180" y1="38" x2="180" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="248" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="300" y="29" text-anchor="middle" font-size="13" font-weight="bold">Orders</text>
+<line x1="300" y1="38" x2="300" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="368" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="420" y="29" text-anchor="middle" font-size="13" font-weight="bold">Cola</text>
+<line x1="420" y1="38" x2="420" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="488" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="540" y="29" text-anchor="middle" font-size="13" font-weight="bold">Catálogo</text>
+<line x1="540" y1="38" x2="540" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="638" y="10" width="104" height="28" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="690" y="29" text-anchor="middle" font-size="13" font-weight="bold">Pagos</text>
+<line x1="690" y1="38" x2="690" y2="680" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<line x1="60" y1="68" x2="180" y2="68" stroke="#000" stroke-width="1.3"/>
+<polygon points="169,63 180,68 169,73" fill="#000" stroke="#000"/>
+<rect x="64.2" y="49" width="111.6" height="16" fill="#fff" stroke="none"/>
+<text x="120" y="62" text-anchor="middle" font-size="12">POST /api/orders</text>
+<line x1="180" y1="102" x2="300" y2="102" stroke="#000" stroke-width="1.3"/>
+<polygon points="289,97 300,102 289,107" fill="#000" stroke="#000"/>
+<rect x="197.4" y="83" width="85.19999999999999" height="16" fill="#fff" stroke="none"/>
+<text x="240" y="96" text-anchor="middle" font-size="12">POST /orders</text>
+<line x1="300" y1="136" x2="420" y2="136" stroke="#000" stroke-width="1.3"/>
+<polygon points="409,131 420,136 409,141" fill="#000" stroke="#000"/>
+<rect x="307.5" y="117" width="105" height="16" fill="#fff" stroke="none"/>
+<text x="360" y="130" text-anchor="middle" font-size="12">enqueue(pedido)</text>
+<line x1="300" y1="170" x2="180" y2="170" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="191,175 180,170 191,165" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="197.4" y="151" width="85.19999999999999" height="16" fill="#fff" stroke="none"/>
+<text x="240" y="164" text-anchor="middle" font-size="12">202 Accepted</text>
+<line x1="180" y1="204" x2="60" y2="204" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="71,209 60,204 71,199" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="90.6" y="185" width="58.8" height="16" fill="#fff" stroke="none"/>
+<text x="120" y="198" text-anchor="middle" font-size="12">202 + id</text>
+<line x1="420" y1="244" x2="300" y2="244" stroke="#000" stroke-width="1.3"/>
+<polygon points="311,249 300,244 311,239" fill="#000" stroke="#000"/>
+<rect x="310.8" y="225" width="98.39999999999999" height="16" fill="#fff" stroke="none"/>
+<text x="360" y="238" text-anchor="middle" font-size="12">toma el pedido</text>
+<line x1="300" y1="278" x2="540" y2="278" stroke="#000" stroke-width="1.3"/>
+<polygon points="529,273 540,278 529,283" fill="#000" stroke="#000"/>
+<rect x="327.9" y="259" width="184.2" height="16" fill="#fff" stroke="none"/>
+<text x="420" y="272" text-anchor="middle" font-size="12">POST reserve(producto, qty)</text>
+<line x1="540" y1="312" x2="300" y2="312" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="311,317 300,312 311,307" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="354.3" y="293" width="131.39999999999998" height="16" fill="#fff" stroke="none"/>
+<text x="420" y="306" text-anchor="middle" font-size="12">precio y reserva OK</text>
+<line x1="300" y1="350" x2="690" y2="350" stroke="#000" stroke-width="1.3"/>
+<polygon points="679,345 690,350 679,355" fill="#000" stroke="#000"/>
+<rect x="386.4" y="331" width="217.2" height="16" fill="#fff" stroke="none"/>
+<text x="495" y="344" text-anchor="middle" font-size="12">POST /payments [Retry + Breaker]</text>
+<text x="294" y="390" text-anchor="start" font-size="12" font-weight="bold">[pago aprobado]</text>
+<line x1="690" y1="416" x2="300" y2="416" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="311,421 300,416 311,411" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="452.4" y="397" width="85.19999999999999" height="16" fill="#fff" stroke="none"/>
+<text x="495" y="410" text-anchor="middle" font-size="12">200 APPROVED</text>
+<line x1="300" y1="452" x2="336" y2="452" stroke="#000" stroke-width="1.3"/>
+<line x1="336" y1="452" x2="336" y2="470" stroke="#000" stroke-width="1.3"/>
+<line x1="336" y1="470" x2="300" y2="470" stroke="#000" stroke-width="1.3"/>
+<polygon points="311,475 300,470 311,465" fill="#000" stroke="#000"/>
+<text x="342" y="465" text-anchor="start" font-size="12">estado = CONFIRMED</text>
+<line x1="240" y1="486" x2="745" y2="486" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="294" y="504" text-anchor="start" font-size="12" font-weight="bold">[rechazo 402, fallo 503 o circuito abierto]</text>
+<line x1="690" y1="530" x2="300" y2="530" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="311,535 300,530 311,525" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="449.1" y="511" width="91.8" height="16" fill="#fff" stroke="none"/>
+<text x="495" y="524" text-anchor="middle" font-size="12">error de pago</text>
+<line x1="300" y1="566" x2="540" y2="566" stroke="#000" stroke-width="1.3"/>
+<polygon points="529,561 540,566 529,571" fill="#000" stroke="#000"/>
+<rect x="344.4" y="547" width="151.2" height="16" fill="#fff" stroke="none"/>
+<text x="420" y="560" text-anchor="middle" font-size="12">POST release(producto)</text>
+<line x1="300" y1="602" x2="336" y2="602" stroke="#000" stroke-width="1.3"/>
+<line x1="336" y1="602" x2="336" y2="620" stroke="#000" stroke-width="1.3"/>
+<line x1="336" y1="620" x2="300" y2="620" stroke="#000" stroke-width="1.3"/>
+<polygon points="311,625 300,620 311,615" fill="#000" stroke="#000"/>
+<text x="342" y="615" text-anchor="start" font-size="12">estado = CANCELLED</text>
+<rect x="240" y="372" width="505" height="262" fill="none" stroke="#000" stroke-width="1.3"/>
+<polygon points="240,372 284,372 284,384 276,392 240,392" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="246" y="386" text-anchor="start" font-size="12" font-weight="bold">alt</text>
+<line x1="60" y1="652" x2="180" y2="652" stroke="#000" stroke-width="1.3"/>
+<polygon points="169,647 180,652 169,657" fill="#000" stroke="#000"/>
+<rect x="64.2" y="633" width="111.6" height="16" fill="#fff" stroke="none"/>
+<text x="120" y="646" text-anchor="middle" font-size="12">GET /orders/{id}</text>
+<line x1="180" y1="682" x2="60" y2="682" stroke="#000" stroke-width="1.3" stroke-dasharray="6 4"/>
+<polyline points="71,687 60,682 71,677" fill="none" stroke="#000" stroke-width="1.3"/>
+<rect x="77.4" y="663" width="85.19999999999999" height="16" fill="#fff" stroke="none"/>
+<text x="120" y="676" text-anchor="middle" font-size="12">200 {estado}</text>
+</svg>

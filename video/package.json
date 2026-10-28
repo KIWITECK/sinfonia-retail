@@ -1,0 +1,12 @@
+{
+  "name": "sinfonia-retail-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audio": "node make-audio.mjs",
+    "build": "node build.mjs",
+    "dev": "npx --yes hyperframes@0.8.214 preview",
+    "check": "npx --yes hyperframes@0.8.214 check",
+    "render": "npx --yes hyperframes@0.8.214 render -o renders/presentacion.mp4"
+  }
+}
