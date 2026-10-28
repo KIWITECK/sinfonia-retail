@@ -1,0 +1,26 @@
+# Topología de microservicios: una imagen, cuatro contenedores (variable SERVICE).
+services:
+  catalog:
+    build: .
+    environment: { SERVICE: catalog, PORT: "4001" }
+  payments:
+    build: .
+    environment: { SERVICE: payments, PORT: "4003", PAYMENT_FAILURE_RATE: "0" }
+  orders:
+    build: .
+    environment:
+      SERVICE: orders
+      PORT: "4002"
+      CATALOG_URL: http://catalog:4001
+      PAYMENTS_URL: http://payments:4003
+    depends_on: [catalog, payments]
+  gateway:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      SERVICE: gateway
+      PORT: "8080"
+      CATALOG_URL: http://catalog:4001
+      ORDERS_URL: http://orders:4002
+      PAYMENTS_URL: http://payments:4003
+    depends_on: [orders]
