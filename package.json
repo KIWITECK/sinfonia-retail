@@ -1,0 +1,14 @@
+{
+  "name": "sinfonia-retail",
+  "version": "1.0.0",
+  "description": "Prototipo de arquitectura de microservicios en la nube para Sinfonía Retail (Arquitectura de Software, Unidad 1, AA2)",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test test/"
+  },
+  "author": "David Amaya <davidricardoamayarojas@gmail.com>",
+  "license": "MIT"
+}
