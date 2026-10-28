@@ -75,7 +75,7 @@
 <h1>Arquitectura de microservicios en la nube para Sinfonía Retail: diseño UML, patrones de diseño y prototipo</h1>
 
 <p>El comercio electrónico concentra su demanda en campañas de corta duración durante las cuales una plataforma monolítica debe absorber varias veces su tráfico habitual y, al mismo tiempo, depender de terceros, como las pasarelas de pago, que pueden fallar. Sinfonía Retail S.A.S., una tienda en línea de instrumentos musicales, enfrenta este escenario: su sistema heredado se detiene por completo cuando el cobro se demora, vende existencias que ya no tiene y obliga a desplegar toda la aplicación ante cualquier cambio. Este informe documenta la arquitectura propuesta para reemplazarlo, diseñada con base en los principios de modularidad y escalabilidad de la arquitectura de software (Bass et al., 2021; Richards y Ford, 2020).</p>
-<p>El trabajo sigue los pasos solicitados en la actividad (Tecnológica del Oriente, s. f.): análisis de requisitos, modelado con el Lenguaje Unificado de Modelado (UML), selección de patrones de diseño para la nube e implementación de un prototipo ejecutable. El código fuente está disponible en https://github.com/[usuario]/sinfonia-retail y la presentación en video, en https://youtu.be/[enlace]. Al final se valoran los resultados y las limitaciones de la propuesta.</p>
+<p>El trabajo sigue los pasos solicitados en la actividad (Tecnológica del Oriente, s. f.): análisis de requisitos, modelado con el Lenguaje Unificado de Modelado (UML), selección de patrones de diseño para la nube e implementación de un prototipo ejecutable. El código fuente está disponible en https://github.com/KIWITECK/sinfonia-retail y la presentación en video, en https://youtu.be/[enlace]. Al final se valoran los resultados y las limitaciones de la propuesta.</p>
 
 <h1>Análisis de requisitos</h1>
 
@@ -198,7 +198,7 @@
 
 <h1>Implementación del prototipo</h1>
 <h2>Estructura y tecnología</h2>
-<p>El prototipo usa Node.js 22 con módulos ES y sin dependencias. Contiene los cuatro servicios en src/services, las implementaciones de los patrones en src/shared, un panel web en public, un Dockerfile y un archivo docker-compose.yml. Cada patrón es una clase o función pequeña con pruebas propias, lo que permite verificar su comportamiento sin levantar la red. El repositorio https://github.com/[usuario]/sinfonia-retail incluye un README con las instrucciones de ejecución y un historial de commits organizado por funcionalidad.</p>
+<p>El prototipo usa Node.js 22 con módulos ES y sin dependencias. Contiene los cuatro servicios en src/services, las implementaciones de los patrones en src/shared, un panel web en public, un Dockerfile y un archivo docker-compose.yml. Cada patrón es una clase o función pequeña con pruebas propias, lo que permite verificar su comportamiento sin levantar la red. El repositorio https://github.com/KIWITECK/sinfonia-retail incluye un README con las instrucciones de ejecución y un historial de commits organizado por funcionalidad.</p>
 
 <h2>Evidencia de funcionamiento</h2>
 <p>La Figura 5 muestra el panel durante una prueba de caída del servicio de pagos: el circuito está abierto, los pedidos nuevos se cancelan con la razón «circuito abierto» y el inventario del violín permanece en 25 unidades, lo que confirma la compensación. La Tabla 4 resume la medición de cada escenario de calidad con el guion scripts/bench.mjs.</p>
