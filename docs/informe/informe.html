@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arquitectura de microservicios en la nube para Sinfonía Retail</title>
+<style>
+  /* APA 7 (trabajo estudiantil): carta, márgenes de 1 in, Arial 11 pt, doble espacio, sangría de 0,5 in,
+     número de página arriba a la derecha, alineación a la izquierda, sin color. */
+  @page {
+    size: Letter;
+    margin: 1in;
+    @top-right { content: counter(page); font: 11pt Arial, Helvetica, sans-serif; color: #000; }
+  }
+  * { color: #000; box-sizing: border-box; }
+  html { background: #fff; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    line-height: 2;
+    margin: 0;
+    background: #fff;
+    orphans: 2;
+    widows: 2;
+  }
+  @media screen { body { max-width: 6.5in; margin: 1in auto; } }
+  p { margin: 0; text-indent: 0.5in; text-align: left; }
+  p.sin-sangria { text-indent: 0; }
+  a { text-decoration: none; }
+
+  h1, h2, h3 { font-size: 11pt; margin: 0; line-height: 2; break-after: avoid; }
+  h1 { text-align: center; font-weight: bold; }
+  h2 { text-align: left; font-weight: bold; }
+  h3 { text-align: left; font-weight: bold; font-style: italic; }
+
+  /* Portada */
+  .portada { text-align: center; break-after: page; padding-top: 1.4in; }
+  .portada p { text-indent: 0; text-align: center; }
+  .portada .titulo { font-weight: bold; margin-bottom: 2em; }
+
+  /* Tablas y figuras */
+  .bloque { margin: 0 0 1em; break-inside: avoid; }
+  .bloque .num { font-weight: bold; text-indent: 0; line-height: 1.6; break-after: avoid; }
+  .bloque .nombre { font-style: italic; text-indent: 0; line-height: 1.6; margin-bottom: 0.4em; break-after: avoid; }
+  .bloque .nota { text-indent: 0; font-size: 10pt; line-height: 1.4; margin-top: 0.4em; }
+  table { border-collapse: collapse; width: 100%; font-size: 10pt; line-height: 1.3; }
+  thead th { border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: left; font-weight: bold; padding: 4pt 6pt; vertical-align: bottom; }
+  tbody td { padding: 3pt 6pt; vertical-align: top; text-align: left; }
+  tbody tr:last-child td { border-bottom: 1px solid #000; }
+  tr { break-inside: avoid; }
+  figure { margin: 0; }
+  figure img { display: block; margin: 0 auto; width: 100%; height: auto; }
+  figure.estrecha img { width: 5.1in; }
+
+  /* Referencias */
+  .referencias { break-before: page; }
+  .ref { padding-left: 0.5in; text-indent: -0.5in; text-align: left; }
+</style>
+</head>
+<body>
+
+<!-- ============================ PORTADA ============================ -->
+<section class="portada">
+  <p class="titulo">Arquitectura de microservicios en la nube para Sinfonía Retail: diseño UML, patrones de diseño y prototipo</p>
+  <p>David Amaya</p>
+  <p>Tecnológica del Oriente, Institución de Educación Superior</p>
+  <p>Ingeniería de Software</p>
+  <p>Arquitectura de Software</p>
+  <p>Unidad 1, Actividad 2: Orquestando códigos: La sinfonía de los sistemas</p>
+  <p>[Nombre del docente]</p>
+  <p>28 de octubre de 2026</p>
+</section>
+
+<!-- ============================ TEXTO ============================ -->
+<h1>Arquitectura de microservicios en la nube para Sinfonía Retail: diseño UML, patrones de diseño y prototipo</h1>
+
+<p>El comercio electrónico concentra su demanda en campañas de corta duración durante las cuales una plataforma monolítica debe absorber varias veces su tráfico habitual y, al mismo tiempo, depender de terceros, como las pasarelas de pago, que pueden fallar. Sinfonía Retail S.A.S., una tienda en línea de instrumentos musicales, enfrenta este escenario: su sistema heredado se detiene por completo cuando el cobro se demora, vende existencias que ya no tiene y obliga a desplegar toda la aplicación ante cualquier cambio. Este informe documenta la arquitectura propuesta para reemplazarlo, diseñada con base en los principios de modularidad y escalabilidad de la arquitectura de software (Bass et al., 2021; Richards y Ford, 2020).</p>
+<p>El trabajo sigue los pasos solicitados en la actividad (Tecnológica del Oriente, s. f.): análisis de requisitos, modelado con el Lenguaje Unificado de Modelado (UML), selección de patrones de diseño para la nube e implementación de un prototipo ejecutable. El código fuente está disponible en https://github.com/[usuario]/sinfonia-retail y la presentación en video, en https://youtu.be/[enlace]. Al final se valoran los resultados y las limitaciones de la propuesta.</p>
+
+<h1>Análisis de requisitos</h1>
+
+<h2>Contexto del caso</h2>
+<p>Sinfonía Retail S.A.S. vende instrumentos musicales a través de su sitio web. La plataforma actual es un monolito que gestiona catálogo, pedidos y pagos en un mismo proceso y una misma base de datos. Los responsables del negocio reportaron cuatro problemas: (a) en campañas como el Día de la Música las visitas se multiplican y el sitio se degrada; (b) cuando la pasarela de pagos responde con lentitud, los recursos del sistema quedan ocupados y todo el sitio deja de responder; (c) pedidos simultáneos reservan la misma existencia y producen sobreventa; y (d) cada corrección exige desplegar la aplicación completa. La empresa busca una arquitectura modular que escale por partes, tolere las fallas de terceros y se despliegue en la nube.</p>
+
+<h2>Técnica de análisis</h2>
+<p>Los requisitos funcionales se redactaron como historias de usuario a partir de los cuatro problemas anteriores y se agruparon por actor. Los requisitos no funcionales se expresaron como escenarios de calidad con una métrica verificable (Bass et al., 2021) y se clasificaron según el modelo de calidad ISO/IEC 25010 (International Organization for Standardization [ISO], 2011).</p>
+
+<h2>Requisitos funcionales</h2>
+<p>La Tabla 1 resume los ocho requisitos funcionales. Los tres primeros describen el recorrido del cliente; RF-03 a RF-06 corresponden a reglas que el sistema aplica por sí mismo para evitar la sobreventa y las cobranzas fallidas, y RF-07 y RF-08 atienden la operación.</p>
+
+<div class="bloque">
+  <p class="num">Tabla 1</p>
+  <p class="nombre">Requisitos funcionales</p>
+  <table>
+    <thead><tr><th style="width:11%">ID</th><th>Requisito</th><th style="width:19%">Actor</th><th style="width:11%">Prioridad</th></tr></thead>
+    <tbody>
+      <tr><td>RF-01</td><td>Consultar el catálogo con precio y existencias</td><td>Cliente</td><td>Alta</td></tr>
+      <tr><td>RF-02</td><td>Crear un pedido con uno o más ítems</td><td>Cliente</td><td>Alta</td></tr>
+      <tr><td>RF-03</td><td>Reservar el inventario de cada ítem sin permitir sobreventa</td><td>Sistema</td><td>Alta</td></tr>
+      <tr><td>RF-04</td><td>Procesar el pago del pedido con una pasarela externa</td><td>Sistema</td><td>Alta</td></tr>
+      <tr><td>RF-05</td><td>Consultar el estado del pedido (PENDING, PROCESSING, CONFIRMED o CANCELLED)</td><td>Cliente</td><td>Alta</td></tr>
+      <tr><td>RF-06</td><td>Cancelar el pedido y liberar el inventario cuando el pago falle o sea rechazado</td><td>Sistema</td><td>Alta</td></tr>
+      <tr><td>RF-07</td><td>Exponer el estado de salud y las métricas operativas</td><td>Administrador</td><td>Media</td></tr>
+      <tr><td>RF-08</td><td>Simular fallos de la pasarela de pagos para probar la resiliencia</td><td>Administrador</td><td>Media</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><em>Nota.</em> Elaboración propia a partir del contexto del caso.</p>
+</div>
+
+<h2>Requisitos no funcionales</h2>
+<p>La Tabla 2 expresa cada atributo de calidad como un escenario medible y lo vincula con el mecanismo arquitectónico que lo satisface. Esta vinculación guía la selección de patrones de la sección correspondiente.</p>
+
+<div class="bloque">
+  <p class="num">Tabla 2</p>
+  <p class="nombre">Requisitos no funcionales como escenarios de calidad</p>
+  <table>
+    <thead><tr><th style="width:10%">ID</th><th style="width:19%">Atributo (ISO, 2011)</th><th>Escenario medible</th><th style="width:21%">Mecanismo</th></tr></thead>
+    <tbody>
+      <tr><td>RNF-01</td><td>Eficiencia de desempeño</td><td>Ante lecturas repetidas del catálogo, la respuesta tarda menos de 10 ms (la lectura sin caché cuesta unos 100 ms)</td><td>Cache-Aside</td></tr>
+      <tr><td>RNF-02</td><td>Escalabilidad</td><td>En una ráfaga de 40 pedidos, la mediana de aceptación es inferior a 100 ms sin esperar el cobro</td><td>Cola de trabajo</td></tr>
+      <tr><td>RNF-03</td><td>Fiabilidad (tolerancia a fallos)</td><td>Si pagos falla, el rechazo ocurre en menos de 50 ms una vez abierto el circuito, y el sistema se recupera 5 s después de restablecido el servicio</td><td>Circuit Breaker y Retry</td></tr>
+      <tr><td>RNF-04</td><td>Fiabilidad (consistencia)</td><td>Ningún pedido cancelado deja inventario reservado, aun con reintentos</td><td>Saga e idempotencia</td></tr>
+      <tr><td>RNF-05</td><td>Mantenibilidad</td><td>Cada servicio se modifica y despliega sin tocar a los demás</td><td>Servicios y API Gateway</td></tr>
+      <tr><td>RNF-06</td><td>Portabilidad</td><td>El sistema se ejecuta en cualquier plataforma de contenedores configurando solo variables de entorno</td><td>Imagen única</td></tr>
+      <tr><td>RNF-07</td><td>Operabilidad</td><td>El estado de cada servicio y las métricas se consultan en menos de 1 s</td><td>Health Endpoint Monitoring</td></tr>
+      <tr><td>RNF-08</td><td>Seguridad</td><td>Un cliente no puede saturar el sistema con ráfagas ilimitadas de solicitudes</td><td>Límite de tasa</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><em>Nota.</em> Los umbrales se fijaron como criterios de aceptación del prototipo y se verifican en la Tabla 4.</p>
+</div>
+
+<h2>Restricciones y supuestos</h2>
+<p>El prototipo se limita a Node.js 22 sin dependencias externas para que cualquier revisor pueda ejecutarlo. Los datos residen en memoria, la pasarela de pagos es un simulador y la autenticación de usuarios queda fuera del alcance. Estas restricciones no alteran la arquitectura: cada una corresponde a un componente sustituible, como se muestra en el diagrama de despliegue.</p>
+
+<h1>Diseño de la arquitectura con UML</h1>
+<p>La arquitectura adopta un estilo de microservicios (Newman, 2021) con cuatro componentes: un API Gateway como punto único de entrada y los servicios de catálogo, pedidos y pagos, cada uno con una responsabilidad y un estado propios. Los diagramas siguen la notación UML 2.5.1 (Object Management Group [OMG], 2017) y se generan con un guion reproducible incluido en el repositorio.</p>
+
+<h2>Diagrama de casos de uso</h2>
+<p>La Figura 1 delimita el alcance del sistema desde la perspectiva de sus actores. El cliente consulta el catálogo, crea pedidos y revisa su estado; el administrador monitorea el sistema e inyecta fallos para probar la resiliencia, y la pasarela de pagos es un actor externo. «Crear pedido» incluye la reserva de inventario y el procesamiento del pago, y se extiende con la cancelación compensatoria cuando alguno de ellos falla. El diagrama es relevante porque traza cada requisito funcional hacia una capacidad del sistema y fija los límites de los servicios.</p>
+<div class="bloque">
+  <p class="num">Figura 1</p>
+  <p class="nombre">Diagrama de casos de uso de Sinfonía Retail</p>
+  <figure><img src="../diagramas/01-casos-de-uso.svg" alt="Diagrama de casos de uso con los actores Cliente, Administrador y Pasarela de pagos"></figure>
+</div>
+
+<h2>Diagrama de clases</h2>
+<p>La Figura 2 presenta el modelo estático. ApiGateway depende de los tres servicios y no contiene lógica de negocio. OrderService compone una WorkQueue y un CircuitBreaker, y administra pedidos (Order) formados por uno o más ítems (OrderItem); CatalogService compone un CacheAside y administra objetos Product. Las clases que implementan patrones son independientes de los servicios, de modo que se reutilizan y se prueban de forma aislada, lo que favorece la mantenibilidad (RNF-05).</p>
+<div class="bloque">
+  <p class="num">Figura 2</p>
+  <p class="nombre">Diagrama de clases de los servicios y los patrones</p>
+  <figure><img src="../diagramas/02-clases.svg" alt="Diagrama de clases con ApiGateway, CatalogService, OrderService, PaymentService y las clases de patrones"></figure>
+</div>
+
+<h2>Diagrama de secuencia</h2>
+<p>La Figura 3 describe el flujo principal de creación de un pedido. El Gateway recibe la solicitud, Orders la encola y responde de inmediato con 202 Accepted, de modo que el cliente no espera el cobro. Un trabajador toma el pedido, reserva el inventario en Catálogo y solicita el pago, protegido por reintentos y un interruptor de circuito. En el fragmento alternativo, un pago aprobado confirma el pedido; un rechazo, un fallo o un circuito abierto ejecutan la compensación que libera el inventario y cancelan el pedido. El cliente consulta el resultado mediante la ruta de estado. El diagrama justifica la naturaleza asíncrona del diseño y muestra dónde actúa cada patrón.</p>
+<div class="bloque">
+  <p class="num">Figura 3</p>
+  <p class="nombre">Diagrama de secuencia de la creación de un pedido</p>
+  <figure><img src="../diagramas/03-secuencia.svg" alt="Diagrama de secuencia de creación de pedido con fragmento alternativo de pago aprobado o fallido"></figure>
+</div>
+
+<h2>Diagrama de despliegue</h2>
+<p>La Figura 4 muestra cómo se distribuyen los artefactos. El navegador accede por HTTPS al contenedor gateway, que se comunica por HTTP con los contenedores catalog, orders y payments. Los cuatro se construyen con una misma imagen de Node.js 22 y se diferencian por una variable de entorno (SERVICE), por lo que pueden desplegarse en una plataforma de contenedores gestionada, como Google Cloud Run, o ejecutarse juntos en un solo contenedor. Los nodos discontinuos indican la evolución prevista (caché gestionada, broker de mensajes y pasarela real) y no forman parte del prototipo.</p>
+<div class="bloque">
+  <p class="num">Figura 4</p>
+  <p class="nombre">Diagrama de despliegue en una plataforma de contenedores</p>
+  <figure><img src="../diagramas/04-despliegue.svg" alt="Diagrama de despliegue con navegador, cuatro contenedores y nodos de evolución prevista"></figure>
+</div>
+
+<h1>Selección de patrones de diseño</h1>
+<h2>Selección y trazabilidad</h2>
+<p>Se partió del catálogo de patrones de computación en la nube de Microsoft (s. f.) y de la bibliografía sobre microservicios (Newman, 2021; Richardson, 2019), y se adoptaron únicamente los patrones que responden de forma directa a un requisito no funcional, como lo recomienda el enfoque de patrones de diseño (Gamma et al., 1994): cada patrón debe resolver un problema concreto. La Tabla 3 resume la selección.</p>
+
+<div class="bloque">
+  <p class="num">Tabla 3</p>
+  <p class="nombre">Patrones seleccionados, problema que resuelven y aplicación en el prototipo</p>
+  <table>
+    <thead><tr><th style="width:21%">Patrón</th><th style="width:27%">Problema</th><th>Aplicación en el prototipo</th><th style="width:12%">Requisito</th></tr></thead>
+    <tbody>
+      <tr><td>API Gateway (Richardson, 2019)</td><td>Los clientes no deben conocer la ubicación ni el número de servicios</td><td>Servicio gateway: enrutamiento, salud agregada y panel web</td><td>RNF-05, RNF-07</td></tr>
+      <tr><td>Cache-Aside (Microsoft, s. f.)</td><td>Las lecturas repetidas sobrecargan la fuente de datos</td><td>CacheAside con TTL de 5 s en el catálogo; se invalida al reservar o liberar</td><td>RNF-01</td></tr>
+      <tr><td>Queue-Based Load Leveling (Microsoft, s. f.)</td><td>Las ráfagas saturan el procesamiento sincrónico</td><td>WorkQueue con dos trabajadores; POST /orders responde 202</td><td>RNF-02</td></tr>
+      <tr><td>Saga orquestada (Garcia-Molina y Salem, 1987; Richardson, 2019)</td><td>No existe una transacción distribuida entre catálogo y pagos</td><td>runSaga reserva, cobra y, si falla, compensa liberando el inventario</td><td>RNF-04</td></tr>
+      <tr><td>Circuit Breaker (Fowler, 2014; Nygard, 2018)</td><td>Una dependencia caída agota recursos y propaga el fallo</td><td>Interruptor alrededor del cobro: se abre tras 3 fallos y espera 5 s</td><td>RNF-03</td></tr>
+      <tr><td>Retry (Microsoft, s. f.)</td><td>Los fallos transitorios no deben cancelar pedidos</td><td>retry() con retroceso exponencial y jitter, solo para errores 5xx y de red</td><td>RNF-03</td></tr>
+      <tr><td>Idempotent Receiver (Hohpe y Woolf, 2003)</td><td>Un reintento no debe cobrar ni reservar dos veces</td><td>Cabecera Idempotency-Key en pagos y reservas por identificador de pedido</td><td>RNF-04</td></tr>
+      <tr><td>Health Endpoint Monitoring (Microsoft, s. f.)</td><td>El operador debe saber qué componente falló</td><td>/health en cada servicio y agregación en /api/health</td><td>RNF-07</td></tr>
+      <tr><td>Rate Limiting (Microsoft, s. f.)</td><td>Un cliente puede saturar el sistema</td><td>Token bucket por IP en el gateway (60 fichas, 30 por segundo)</td><td>RNF-08</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><em>Nota.</em> Elaboración propia. TTL = tiempo de vida de una entrada de caché.</p>
+</div>
+
+<h2>Justificación de las decisiones</h2>
+<p>Se eligió una saga orquestada en lugar de una coreografiada porque el pedido atraviesa solo dos servicios y el flujo tiene un orden claro; un orquestador central concentra la lógica, facilita seguir el estado de cada pedido y evita dependencias cíclicas entre servicios (Richardson, 2019). La coreografía se reservaría para flujos con más participantes.</p>
+<p>Retry y Circuit Breaker se combinan porque cubren fallos distintos: el reintento absorbe los transitorios y el interruptor evita que, cuando el fallo es persistente, cada pedido consuma todos sus reintentos. En el prototipo el reintento envuelve al interruptor para que cada intento cuente como fallo y, una vez abierto el circuito, los reintentos se detengan de inmediato; sin esta combinación, cada pedido cancelado ocuparía a un trabajador durante todo el tiempo de espera (Nygard, 2018). La cola, por su parte, desacopla la tasa de llegada de la de procesamiento: el cliente recibe respuesta en milisegundos y el pico se consume al ritmo que soporta el servicio de pagos.</p>
+<p>Se descartaron tres alternativas. Un monolito modular resuelve la mantenibilidad, pero no el escalado independiente ni el aislamiento de fallos. El commit en dos fases se descartó porque bloquea recursos y exige que todos los participantes lo soporten, algo que las pasarelas de pago externas no ofrecen. Compartir una base de datos entre servicios se descartó porque reintroduce el acoplamiento que se busca eliminar (Newman, 2021).</p>
+
+<h1>Implementación del prototipo</h1>
+<h2>Estructura y tecnología</h2>
+<p>El prototipo usa Node.js 22 con módulos ES y sin dependencias. Contiene los cuatro servicios en src/services, las implementaciones de los patrones en src/shared, un panel web en public, un Dockerfile y un archivo docker-compose.yml. Cada patrón es una clase o función pequeña con pruebas propias, lo que permite verificar su comportamiento sin levantar la red. El repositorio https://github.com/[usuario]/sinfonia-retail incluye un README con las instrucciones de ejecución y un historial de commits organizado por funcionalidad.</p>
+
+<h2>Evidencia de funcionamiento</h2>
+<p>La Figura 5 muestra el panel durante una prueba de caída del servicio de pagos: el circuito está abierto, los pedidos nuevos se cancelan con la razón «circuito abierto» y el inventario del violín permanece en 25 unidades, lo que confirma la compensación. La Tabla 4 resume la medición de cada escenario de calidad con el guion scripts/bench.mjs.</p>
+<div class="bloque">
+  <p class="num">Figura 5</p>
+  <p class="nombre">Panel del prototipo con el circuito de pagos abierto</p>
+  <figure class="estrecha"><img src="../img/panel-circuito-abierto.png" alt="Captura del panel con servicios activos, circuito OPEN y pedidos cancelados por circuito abierto"></figure>
+  <p class="nota"><em>Nota.</em> Captura del prototipo en ejecución local.</p>
+</div>
+
+<div class="bloque">
+  <p class="num">Tabla 4</p>
+  <p class="nombre">Resultados de las mediciones frente a los umbrales definidos</p>
+  <table>
+    <thead><tr><th style="width:23%">Escenario</th><th style="width:25%">Umbral</th><th>Resultado medido</th><th style="width:9%">Cumple</th></tr></thead>
+    <tbody>
+      <tr><td>Lectura del catálogo (RNF-01)</td><td>Menos de 10 ms con caché</td><td>118,6 ms sin caché; mediana de 0,7 ms con caché (n = 30)</td><td>Sí</td></tr>
+      <tr><td>Ráfaga de 40 pedidos (RNF-02)</td><td>Mediana de aceptación inferior a 100 ms</td><td>Mediana de 26,8 ms; los 40 aceptados en 42 ms; procesamiento completo en 1,74 s</td><td>Sí</td></tr>
+      <tr><td>Caída de pagos (RNF-03)</td><td>Rechazo en menos de 50 ms con el circuito abierto</td><td>Primer pedido en 481 ms (con reintentos); los siguientes, cerca de 20 ms</td><td>Sí</td></tr>
+      <tr><td>Recuperación (RNF-03)</td><td>Recuperación 5 s después de restablecido el servicio</td><td>Pedido CONFIRMED a los 5,2 s; circuito CLOSED</td><td>Sí</td></tr>
+      <tr><td>Consistencia (RNF-04)</td><td>Sin inventario reservado por pedidos cancelados</td><td>Violín: 24 de 25 unidades (un pedido confirmado; los cancelados liberaron su reserva)</td><td>Sí</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><em>Nota.</em> Una ejecución representativa en un equipo local, con 100 ms de latencia simulada en la base de datos; los valores varían entre ejecuciones.</p>
+</div>
+
+<h2>Pruebas automatizadas</h2>
+<p>Se escribieron 12 pruebas con el ejecutor nativo de Node.js: cinco unitarias de los patrones y siete de integración del sistema completo. Estas últimas cubren la saga exitosa, la compensación por falta de inventario, el rechazo de un pago, la apertura y la recuperación del interruptor, el acierto de caché y la validación de entradas. Todas pasan con el comando npm test.</p>
+
+<h2>Ejecución en la nube y repositorio</h2>
+<p>La imagen de contenedor es única y se configura con variables de entorno. Con SERVICE=all escucha en el puerto indicado por PORT, lo que la hace compatible con servicios gestionados como Google Cloud Run (el comando está en el README), y con docker compose up se levantan los cuatro contenedores por separado. El prototipo se verificó en ejecución local; el despliegue en un proveedor concreto sigue los pasos del README.</p>
+
+<h1>Conclusiones</h1>
+<p>La arquitectura propuesta responde a los cuatro problemas de Sinfonía Retail con patrones concretos y verificables: la separación por servicios y el API Gateway aportan modularidad; la cola y el Cache-Aside, escalabilidad y rendimiento; y la combinación de Retry, Circuit Breaker y saga con compensación, tolerancia a fallas sin pérdida de consistencia. Las mediciones del prototipo cumplieron los umbrales fijados para los escenarios de calidad (Tabla 4) y el modelado UML permitió trazar cada requisito hasta un componente.</p>
+<p>El prototipo tiene límites: guarda los datos en memoria, su cola es local al proceso (un reinicio pierde los pedidos pendientes), la pasarela es simulada y no hay autenticación. En producción corresponde sustituir la cola por un broker de mensajes, el estado por una base de datos gestionada por servicio y la caché por un servicio compartido, además de añadir autenticación en el Gateway y trazabilidad distribuida. Como trabajo futuro se recomienda medir el sistema bajo carga sostenida en la nube para validar las mismas métricas fuera del entorno local.</p>
+
+<!-- ============================ REFERENCIAS ============================ -->
+<section class="referencias">
+  <h1>Referencias</h1>
+  <p class="ref">Bass, L., Clements, P. y Kazman, R. (2021). <em>Software architecture in practice</em> (4.ª ed.). Addison-Wesley.</p>
+  <p class="ref">Fowler, M. (2014, 6 de marzo). <em>CircuitBreaker</em>. martinfowler.com. https://martinfowler.com/bliki/CircuitBreaker.html</p>
+  <p class="ref">Gamma, E., Helm, R., Johnson, R. y Vlissides, J. (1994). <em>Design patterns: Elements of reusable object-oriented software</em>. Addison-Wesley.</p>
+  <p class="ref">Garcia-Molina, H. y Salem, K. (1987). Sagas. <em>ACM SIGMOD Record, 16</em>(3), 249-259. https://doi.org/10.1145/38713.38742</p>
+  <p class="ref">Hohpe, G. y Woolf, B. (2003). <em>Enterprise integration patterns: Designing, building, and deploying messaging solutions</em>. Addison-Wesley.</p>
+  <p class="ref">International Organization for Standardization. (2011). <em>Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models</em> (ISO/IEC 25010:2011). https://www.iso.org/standard/35733.html</p>
+  <p class="ref">Microsoft. (s. f.). <em>Cloud design patterns</em>. Microsoft Learn. https://learn.microsoft.com/en-us/azure/architecture/patterns/</p>
+  <p class="ref">Newman, S. (2021). <em>Building microservices: Designing fine-grained systems</em> (2.ª ed.). O'Reilly Media.</p>
+  <p class="ref">Nygard, M. T. (2018). <em>Release it! Design and deploy production-ready software</em> (2.ª ed.). Pragmatic Bookshelf.</p>
+  <p class="ref">Object Management Group. (2017). <em>OMG Unified Modeling Language (OMG UML)</em> (Versión 2.5.1; formal/17-12-05). https://www.omg.org/spec/UML/2.5.1</p>
+  <p class="ref">Richards, M. y Ford, N. (2020). <em>Fundamentals of software architecture: An engineering approach</em>. O'Reilly Media.</p>
+  <p class="ref">Richardson, C. (2019). <em>Microservices patterns: With examples in Java</em>. Manning Publications.</p>
+  <p class="ref">Tecnológica del Oriente. (s. f.). <em>Guía de aprendizaje: Arquitectura de software</em> [Documento del curso]. Institución de Educación Superior.</p>
+</section>
+
+</body>
+</html>
